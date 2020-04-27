@@ -23,8 +23,6 @@ const ctx = canvas.getContext("2d");
 
 //this is a fairly crude radius calculaton - this is the middle of the canvas essentially.
 let radius = canvas.height/2;
-console.log("Canvas height: " + canvas.height);
-console.log("Width: " + canvas.width);
 
 //position the drawing object - in the case we want the middle of the canvas
 ctx.translate(radius, radius);
@@ -37,6 +35,7 @@ radius = radius * 0.90;
 // in this case its called every second.
 
 setInterval(drawClock, 1000);
+calendar();
 
 function drawClock(){
 
@@ -53,6 +52,7 @@ function drawClock(){
   drawFace(ctx, radius);
   drawNumbers(ctx, radius);
   drawTime(ctx, radius);
+  
 
 }
 
@@ -154,14 +154,17 @@ function drawTime(ctx, pos, length, width){
 	let hour = now.getHours();
 	let minute = now.getMinutes();
 	let second = now.getSeconds();
+		
+	console.log("time is: " + hour + " : " + minute + " : " + second);
 	
 	//this code works our the hour hand
 	//next we need to calculate the angle of the hands
 	hour = hour % 12;
 	//work out what to draw
-	hour = (hour *Math.PI/6) + (minute * Math.PI / (6*60)) + (second *Math.PI/(360 *60));
+	
+	hour = (hour * Math.PI/6) + (minute * Math.PI / (6*60)) + (second *Math.PI/(360 *60));
 	//call the drawHand function to draw the actual hand
-	drawHand(ctx, hour, radius*0.8, radius *0.07);
+	drawHand(ctx, hour, radius*0.5, radius *0.07);
 	
 	//this code works out the minute hand
 	minute = (minute * Math.PI / 30) + (second * Math.PI/(30*60));
@@ -188,10 +191,28 @@ function drawHand(ctx, pos, length, width){
 	//rotote to the right position (angle to draw the line at)
 	ctx.rotate(pos);
 	//define where to start and where to finish the line length
-	ctx.lineTo(0,length);
+	ctx.lineTo(0, -length);
 	//draw the line
 	ctx.stroke();
 	//reset the drawing object to a normal position 
 	ctx.rotate(-pos);
 
 }
+
+//This is a extention of the code given by the W3C schools tutorial
+//The function below will display a calendar
+function calendar(){
+	//create a new date variable
+	let date = new Date();
+	//store the year
+	let year = date.getFullYear();
+	//store the month
+	let month = date.getMonth();
+	//store the date
+	let day = date.getDate();
+		
+	let calendarDate = day + " / " + month + " / " + year
+	console.log("The date is: " + calendarDate);		
+}
+
+
