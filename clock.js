@@ -6,18 +6,25 @@
 ///     It provides all the functionality for the clock face.  The is based on
 ///     the javascript canvas clock tutorial on the w3schools:
 ///
+///		https://www.w3schools.com/graphics/canvas_clock.asp
 ///
 ///
 //////////////////////////////////////////////////////////////////////////////
 
+///part of ES6 - enable the use strict function
+"use strict"
+
+
 ///first we need a link from to the <canvas> element in clock.html
-var canvas = document.getElementById("canvas");
+const canvas = document.getElementById("analog_canvas");
 
 //next we need to create an object to draw width
-var ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
 //this is a fairly crude radius calculaton - this is the middle of the canvas essentially.
-var radius = canvas.height/2;
+let radius = canvas.height/2;
+console.log("Canvas height: " + canvas.height);
+console.log("Width: " + canvas.width);
 
 //position the drawing object - in the case we want the middle of the canvas
 ctx.translate(radius, radius);
@@ -26,8 +33,9 @@ ctx.translate(radius, radius);
 radius = radius * 0.90;
 
 //call the drawClock() in order to actually draw the face of the drawClock
-//this is done at interval otherwise it only works once!
-//drawClock();
+//this is done at interval otherwise it only works once
+// in this case its called every second.
+
 setInterval(drawClock, 1000);
 
 function drawClock(){
@@ -70,7 +78,7 @@ function drawFace(ctx, radius){
 	
 	///in order to make things look a bit better we are going to use some gradient colors
 	///a variable to store the gradient
-	var grad;
+	let grad;
 	///define a gradient
 	grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
 	//we now add 3 colour stops to use:
@@ -101,7 +109,7 @@ function drawFace(ctx, radius){
 }
 
 //this is a fucntion to draw the numbers on the clock face
-///like the clockface helper function we have to pass ctx and radius
+//like the clockface helper function we have to pass ctx and radius
 function drawNumbers(ctx, radius){
 	
 	//to begin with we need a font size - in this case its 15% of the radius
@@ -110,13 +118,11 @@ function drawNumbers(ctx, radius){
 	//next we set the font alignment in the case in the middle
 	ctx.textBaseline = "middle";
 	ctx.textAlign = "center";
-	
-	
-	
+		
 	//next we need to calculate and draw each number
 	
-	var ang;
-	var num;
+	let ang;
+	let num;
 	///has to be less than 13 as there are only 12 numbers on a clock face
 	for (num = 1; num < 13; num ++){
 		
@@ -143,11 +149,11 @@ function drawNumbers(ctx, radius){
 function drawTime(ctx, pos, length, width){
 	
 	//first of all we need to get the current time
-	var now = new Date();
+	let now = new Date();
 	//put into seperate variables - hours, mins, seconds
-	var hour = now.getHours();
-	var minute = now.getMinutes();
-	var second = now.getSeconds();
+	let hour = now.getHours();
+	let minute = now.getMinutes();
+	let second = now.getSeconds();
 	
 	//this code works our the hour hand
 	//next we need to calculate the angle of the hands
