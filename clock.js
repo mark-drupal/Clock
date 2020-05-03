@@ -35,7 +35,6 @@ radius = radius * 0.90;
 // in this case its called every second.
 
 setInterval(drawClock, 1000);
-calendar();
 
 function drawClock(){
 
@@ -155,8 +154,6 @@ function drawTime(ctx, pos, length, width){
 	let minute = now.getMinutes();
 	let second = now.getSeconds();
 		
-	console.log("time is: " + hour + " : " + minute + " : " + second);
-	
 	//this code works our the hour hand
 	//next we need to calculate the angle of the hands
 	hour = hour % 12;
@@ -199,20 +196,5 @@ function drawHand(ctx, pos, length, width){
 
 }
 
-//This is a extention of the code given by the W3C schools tutorial
-//The function below will display a calendar
-function calendar(){
-	//create a new date variable
-	let date = new Date();
-	//store the year
-	let year = date.getFullYear();
-	//store the month
-	let month = date.getMonth();
-	//store the date
-	let day = date.getDate();
-		
-	let calendarDate = day + " / " + month + " / " + year
-	console.log("The date is: " + calendarDate);		
-}
 
 

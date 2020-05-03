@@ -8,6 +8,10 @@
 
     <!--Link to the internal stylesheet clock.css-->
     <link rel="stylesheet" type="text/css" href="clock.css">
+
+    <!--Import some javascript files - these should be all in the dir as clock.html-->
+    <script src="todaysdate.js"></script>
+
     <title>This a clock example that I have coded up based on the W3C Schools tutorial</title>
   </head>
   <body>
@@ -16,17 +20,24 @@
 
     <div id="main" class="container-fluid col">
 
-      <div id="title" class="container-fluid row-sm">
-        <h1 class="text-center text-light">HTML Canvas Clock</h1>
+      <div id="title" class="row align-middle">
+        <h1 class="text-center text-light container-fluid align-middle">HTML Canvas Clock</h1>
       </div>
 
       <div id="analog_clock" class="row align-middle">
         <canvas id="analog_canvas" class="container-fluid align-middle" width="300" height="300"></canvas>
         <script src="clock.js">
-          <!--see the clock.js file which needs to in the same dir for the javascript-->
+
         </script>
       </div>
 
+        <div id="todays-date-container" class ="row align-middle">
+          <h3 id="today" class="text-center text-light container-fluid align-middle">This should read today date - dd/mm/yyyy if it does not check the ID element</h3>
+            <script>
+            //just calls the calendar function and assigns to the element with the id of today in this case
+            document.getElementById("today").innerHTML = today();
+            </script>
+      </div>
 
     </div>
 

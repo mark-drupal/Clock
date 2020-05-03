@@ -4,32 +4,37 @@
 #main-container{
   padding: 1em;
   margin: 1em;
+
+  max-width: 100vw;
 }
 
 /*This is the CSS Style for the title element*/
 #title{
   background-color: #333;
 
-
 }
 
 /*This is the style for the analog clock - important to note that
 some of the style is built into the javascript file at present*/
 #analog_clock{
-
   /*Some styling*/
   background-color: #333;
-
-
 
 }
 /*styling for the script of Analog clock*/
 #analog_canvas{
-
-
-
   /*stick to either vw or vh otherwise you don't get a square canvas*/
   max-width: 40vh;
   max-height: 40vh;
+}
+
+/*Styling for the today ID*/
+#todays-date-container{
+  background-color: #333;
+}
+
+#today{
+  padding: 2px;
+  margin: 2px;
 
 }
